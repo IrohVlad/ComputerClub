@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('rate', function(Blueprint $table){
             $table->id()->autoIncrement();
-            $table->foreignId('product_type_id')->constrained();
-            $table->timestamps();
+            $table->foreignId('rate_type_id')->constrained('rate_type');
+            $table->foreignId('pc_id')->constrained('pc');
+            $table->string('title');
+            $table->string('price');
+            $table->string('short_description');
+            $table->text('description');
         });
     }
 
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        //
     }
 };

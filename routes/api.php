@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/products', [App\Http\Controllers\Api\ProductController::class, "all"])->name('products');
+
+Route::post('/signup', [AuthController::class, "signup"]);
+Route::post('/login', [AuthController::class, "login"]);
+Route::post('/logout', [AuthController::class, "logout"]);

@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class ProductInfo extends Model
 {
     use HasFactory;
-    public function basket() {
-        return $this->hasOne(Basket::class);
-    }
 }
