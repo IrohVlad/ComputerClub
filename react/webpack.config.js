@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 export default {
-    entry: ['@babel/polyfill', './src/script.tsx'],
+    entry: ['@babel/polyfill', './src/index.tsx'],
     output: {
         filename: '[name].index.js',
         path: path.resolve(path.resolve(), 'dist')
@@ -21,6 +21,11 @@ export default {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
+                test: /\.(png|jpg|jpeg|svg)$/,
+                exclude: /node_modules/,
+                use: ['file-loader']
+            },
+            {
                 test: /\.m?(tsx|ts)$/,
                 exclude: /node_modules/,
                 use: {
@@ -31,6 +36,9 @@ export default {
                 }
             }
         ]
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.scss', '.png', '.jpeg', '.svg', '.jpg'],
     },
     plugins: [
         new CleanWebpackPlugin(),
