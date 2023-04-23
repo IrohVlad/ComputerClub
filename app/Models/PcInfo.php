@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PcInfo extends Model
 {
     use HasFactory;
+    public function pc(){
+        $this->belongsTo(Pc::class);
+    }
 }

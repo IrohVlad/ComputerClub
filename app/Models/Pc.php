@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Pc extends Model
 {
     use HasFactory;
+
+    public function rates(){
+        $this->hasMany(Rate::class);
+    }
+    public function pcInfo(){
+        $this->hasMany(PcInfo::class);
+    }
 }
