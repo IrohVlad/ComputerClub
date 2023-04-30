@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('basket_product', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('basket_id')->constrained('basket');
-            $table->foreignId('product_id')->constrained('product');
+        Schema::create('user', function(Blueprint $table){
+            $table->id()->autoIncrement();
+            $table->string('mail')->unique();
+            $table->string('password_hash')->nullable();
+            $table->string('role');
+            $table->string('nickname');
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('basket_product');
+        Schema::dropIfExists('user');
     }
 };

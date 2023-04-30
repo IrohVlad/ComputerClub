@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('basket', function(Blueprint $table){
             $table->id()->autoIncrement();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained('user');
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('basket');
     }
 };

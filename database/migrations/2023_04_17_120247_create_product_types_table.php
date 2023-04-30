@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pc', function(Blueprint $table){
+        Schema::create('product_type', function(Blueprint $table){
             $table->id()->autoIncrement();
+            $table->string('name');
+            $table->integer('price');
+            $table->string('img')->default('hero.png');
         });
     }
 
@@ -21,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('product_type');
     }
 };

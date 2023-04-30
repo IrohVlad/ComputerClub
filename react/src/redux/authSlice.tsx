@@ -2,29 +2,28 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface CounterState {
-  auth: boolean
+  before: boolean;
+  auth: boolean;
+  role: string;
 }
 
 const initialState: CounterState = {
+  before: true,
   auth: false,
+  role: ''
 }
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    register: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.auth = true
-    },
-    login: (state) => {
-        state.auth = true
+    login: (state, action: PayloadAction<string>) => {
+        state.role = action.payload;
+        state.auth = true;
     },
     logout: (state) => {
-        state.auth = false
+        state.role = '';
+        state.auth = false;
     },
     // incrementByAmount: (state, action: PayloadAction<number>) => {
     //   state.value += action.payload
@@ -32,7 +31,23 @@ export const authSlice = createSlice({
   },
 })
 
+export const RegisterRequest = async (dispatch, data: Object) => {
+  const request = await fetch('http://127.0.0.1:8000/api/signup', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  if(request.ok){
+    let response = await request.json()
+    localStorage.setItem('token', response.token)
+    dispatch(login(response.role))
+  }
+}
+
 // Action creators are generated for each case reducer function
-export const { register, login, logout } = authSlice.actions
+export const { login, logout } = authSlice.actions
 
 export default authSlice.reducer

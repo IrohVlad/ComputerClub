@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Basket extends Model
 {
     use HasFactory;
+    public $table = "basket";
+    // protected $fillable = ['user_id'];
+    public $timestamps = false;
 
     public function user() {
         return $this->belongsTo(User::class);
     }
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(ProductType::class)->withPivot('count');
     }
     public function rates(){
         return $this->belongsToMany(Rate::class);

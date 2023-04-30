@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pc_info', function(Blueprint $table){
-            $table->id()->autoIncrement();
-            $table->foreignId('pc_id')->constrained();
-            $table->string('title');
-            $table->string('value');
+        Schema::create('basket_product_type', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('basket_id')->constrained('basket');
+            $table->foreignId('product_type_id')->constrained('product_type');
+            $table->integer('count')->default(1);
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('basket_product_type');
     }
 };

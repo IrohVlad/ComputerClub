@@ -9,10 +9,14 @@ class Rate extends Model
 {
     use HasFactory;
 
+    protected $table = 'rate';
     public function pc(){
-        $this->belongsTo(Pc::class);
+        return $this->belongsTo(Pc::class);
     }
-    public function pcInfo(){
-        $this->belongsToMany(Basket::class);
+    public function rateTypes(){
+        return $this->belongsTo(RateType::class);
+    }
+    public function baskets(){
+        return $this->belongsToMany(Basket::class);
     }
 }

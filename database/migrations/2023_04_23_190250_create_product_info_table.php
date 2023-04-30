@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_info', function(Blueprint $table){
             $table->id()->autoIncrement();
-            $table->foreignId('product_type_id')->constrained();
+            $table->foreignId('product_type_id')->constrained('product_type');
             $table->string('title');
             $table->string('value');
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('product_info');
     }
 };

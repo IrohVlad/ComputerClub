@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rate_type', function(Blueprint $table){
+        Schema::create('pc_info', function(Blueprint $table){
             $table->id()->autoIncrement();
+            $table->foreignId('pc_id')->constrained('pc');
             $table->string('title');
-            $table->string('price');
-            $table->string('short_description');
-            $table->text('description');
+            $table->string('value');
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('pc_info');
     }
 };

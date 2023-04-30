@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productType', function(Blueprint $table){
+        Schema::create('rate_type', function(Blueprint $table){
             $table->id()->autoIncrement();
-            $table->string('name');
-            $table->integer('price');
-            $table->string('img');
+            $table->string('title');
+            $table->string('price');
+            $table->string('img')->default('hero.png');
+            $table->string('short_description');
+            $table->text('description');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('rate_type');
     }
 };

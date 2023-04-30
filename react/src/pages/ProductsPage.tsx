@@ -1,47 +1,40 @@
 import React from 'react';
 import Header from '../components/Header';
-import hero from '../assets/hero.png'
+import Product from '../components/Product';
 import Footer from '../components/Footer';
+interface IPRoduct{
+    id: number;
+    name: string;
+    price: number;
+    img: string;
+    count: number;
+}
 
 const ProductsPage = () => {
+    const [products, setProducts] = React.useState<Array<IPRoduct>>([]);
+    const getProducts =React.useCallback(async () => {
+        await fetch('http://127.0.0.1:8000/api/product/all', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({basketId: 1})
+        }).then(data => data.json()).then(data => {
+            setProducts(data);
+        });
+    }, [])
+    React.useEffect(()=>{
+        getProducts()
+    }, [])
     return (
         <>
         <Header/>
         <main>
             <section className="products-section">
                 <div className="products _container">
-                    <div className="product">
-                        <div className="first-column">
-                            <div className="product-title">
-                            Тариф <br/> <span>С 8:00 до 12:00</span>
-                            </div>
-                            <div className="product-text">
-                            Это базовый курс для начинающих тестировщиков, который научит вас писать автоматизированные UI-тесты на языке программирования Python с помощью библиотеки Selenium. А еще мы рассмотрим популярные фреймворки и хорошие практики написания автотестов.
-                            </div>
-                            <div className="product-button">Купить</div>
-                        </div>
-                        <div className="second-column">
-                            <div className="product-img">
-                                <img src={hero} alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="product">
-                        <div className="first-column">
-                            <div className="product-title">
-                            Тариф <br/> С 8:00 до 12:00 
-                            </div>
-                            <div className="product-text">
-                            Это базовый курс для начинающих тестировщиков, который научит вас писать автоматизированные UI-тесты на языке программирования Python с помощью библиотеки Selenium. А еще мы рассмотрим популярные фреймворки и хорошие практики написания автотестов.
-                            </div>
-                            <div className="product-button">Купить</div>
-                        </div>
-                        <div className="second-column">
-                            <div className="product-img">
-                                <img src={hero} alt="" />
-                            </div>
-                        </div>
-                    </div>
+                    {products.length && products.map((value) => {
+                        return <Product key={value.id} func={getProducts} id={value.id} count={value.count} price={value.price} name={value.name} img={value.img}/>
+                    })}
                 </div>
             </section>
         </main>

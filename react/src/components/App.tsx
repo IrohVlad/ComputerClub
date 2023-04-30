@@ -1,7 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {routes} from './RouterApp';
-import MainPage from '../pages/MainPage';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 const App = () => {
     return (

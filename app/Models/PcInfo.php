@@ -9,6 +9,6 @@ class PcInfo extends Model
 {
     use HasFactory;
     public function pc(){
-        $this->belongsTo(Pc::class);
+        return $this->belongsTo(Pc::class);
     }
 }

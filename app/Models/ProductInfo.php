@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductInfo extends Model
 {
     use HasFactory;
+    protected $table = 'product_info';
 
     public function productType(){
-        $this->belongsTo(ProductType::class);
+        return $this->belongsTo(ProductType::class);
     }
 }

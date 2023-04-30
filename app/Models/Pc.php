@@ -13,6 +13,6 @@ class Pc extends Model
         $this->hasMany(Rate::class);
     }
     public function pcInfo(){
-        $this->hasMany(PcInfo::class);
+        return $this->hasMany(PcInfo::class);
     }
 }
