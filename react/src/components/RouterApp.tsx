@@ -4,6 +4,7 @@ import AuthPage from "../pages/AuthPage";
 import ProductsPage from "../pages/ProductsPage";
 import AdminPage from "../pages/AdminPage";
 import BasketPage from "../pages/BasketPage";
+import RatesPage from "../pages/RatesPage";
 
 interface IRoute {
     route: string,
@@ -30,5 +31,9 @@ export const routes: Array<IRoute> = [
     {
         route: '/basket',
         page: <BasketPage/>
+    },
+    {
+        route: '/rates',
+        page: <RatesPage/>
     }
 ]

@@ -25,6 +25,10 @@ class ProductController extends Controller
         }  
         return $result;
     }
+    public function inBasket(Request $request){
+        $data = json_decode($request->getContent(), true);
+        return Basket::find($data['basketId'])->products;
+    }
     public function create(Request $request){
         $data = json_decode($request->getContent(), true);
         ProductType::create([
@@ -79,7 +83,11 @@ class ProductController extends Controller
         $data = json_decode($request->getContent(), true);
         $inBasket = Basket::find($data['basketId'])->products()->where('product_type_id', $data['productId'])->first();
         if($inBasket){
-            if($inBasket->pivot->count > 1){
+            if($data['clear']){
+                $rate = ProductType::find($data['productId']);
+                $rate->baskets()->detach($data['basketId']);
+            }
+            else if($inBasket->pivot->count > 1){
                 $inBasket->pivot->count = $inBasket->pivot->count - 1;
                 $inBasket->pivot->save();
             } else{

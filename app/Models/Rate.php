@@ -14,7 +14,7 @@ class Rate extends Model
         return $this->belongsTo(Pc::class);
     }
     public function rateTypes(){
-        return $this->belongsTo(RateType::class);
+        return $this->belongsTo(RateType::class, 'rate_type_id');
     }
     public function baskets(){
         return $this->belongsToMany(Basket::class);

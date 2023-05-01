@@ -98,8 +98,6 @@
     animation: 20s infinite alternate light2 ;
 }
 
-
-
 .header{
     margin-top: 26px;
     display: flex;
@@ -149,6 +147,11 @@
     line-height: 19px;
     list-style: none;
     color: #E4E5EA;
+}
+.nav__item img{
+    cursor: pointer;
+    height: 25px;
+    min-width: 25px;
 }
 .nav__item:not(:last-child){
     margin-right: 30px;
@@ -511,6 +514,10 @@
             .product-button-error{
                 background-color: rgb(88, 7, 7);
             }
+            .product-button-disabled{
+                cursor:alias;
+                background-color: rgba(131, 91, 36, 0.352);
+            }
             .product-add{
                 display:flex;
                 align-items:center;
@@ -538,6 +545,114 @@
                 object-fit: cover;
             }
         }
+    }
+}
+.rate{
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+    .first-column{
+        .product-title{
+            span{
+                font-style: normal;
+                font-weight: 400;
+                font-size: 34px;
+                line-height: 41px;
+            }
+            font-style: normal;
+            font-weight: 400;
+            font-size: 44px;
+            line-height: 53px;
+            margin-bottom: 18px;
+            color: #E4E5EA;
+        }
+        .product-text{
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 28px;
+            margin-bottom: 54px;
+        }
+        .product-buttons{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .product-button{
+                cursor: pointer;
+                width: 300px;
+                box-sizing:border-box;
+                transition-property: background-color;
+                transition-duration: 0.3s;
+                background-color: rgba(252, 176, 69, 0.7);
+                text-align: center;
+                padding: 24px;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 27px;
+                /* identical to box height */
+                color: #0A0909;
+            }
+            .product-button-error{
+                background-color: rgb(88, 7, 7);
+            }
+            .product-button-disabled{
+                cursor:default;
+                background-color: rgb(131, 91, 36);
+            }
+            .product-add{
+                display:flex;
+                align-items:center;
+                font-size: 20px;
+                div{
+                    &:not(:last-child){
+                        margin-right: 10px;
+                    }
+                }
+                .minus, .plus{
+                    font-size: 30px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .second-column{
+        .product-img{
+            width: 458px;
+            height: 345px;
+            img{
+                height: 100%;
+                width: 100%;
+                object-position: center;
+                object-fit: cover;
+            }
+        }
+    }
+}
+.dates{
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    gap: 10px;
+    padding: 7px 0;
+    margin-bottom: 150px;
+    overflow-x: auto;
+    .date{
+        white-space: nowrap;
+        padding: 5px 8px;
+        border-radius: 5px;
+        background-color: #0A0909;
+        color: gray;
+        cursor: pointer;
+    }
+    .active{
+        color: white;
+        cursor:default;
+    }
+    .booked{
+        color:rgb(88, 7, 7);
+        cursor:default;
     }
 }
 .product:not(:last-child){
@@ -579,6 +694,13 @@
     .basket-buttons{
         display: flex;
         align-items: center;
+        .product-add{
+            font-size: 20px;
+            margin-right: 20px;
+            .minus, .plus{
+                cursor: pointer;
+            }
+        }
         .basket-delete{
             height: 35px;
             width: 35px;

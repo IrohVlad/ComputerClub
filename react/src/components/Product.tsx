@@ -40,7 +40,7 @@ const Product = React.memo<IProductProps>(function({func, id, price, name, img, 
                             headers: {
                                 'content-type': 'application/json'
                             },
-                            body: JSON.stringify({basketId: 1, productId: id})
+                            body: JSON.stringify({basketId: 1, clear: false, productId: id})
                         }).then(data => data.json()).then(data => {
                             if(data.error){
                                 setState({status: false, response: data.error})

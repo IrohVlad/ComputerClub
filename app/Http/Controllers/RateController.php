@@ -9,8 +9,27 @@ use App\Models\Basket;
 
 class RateController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        $data = json_decode($request->getContent(), true);
         $rates = RateType::with('rates')->get();
+        foreach($rates as $rate){
+            foreach($rate['rates'] as $currentRate){
+                $inBasket = Basket::find($data['basketId'])->rates()->where('rate_type_id', $rate['id'])->where('date', $currentRate['date'])->first();
+                if($inBasket){
+                    $currentRate->in = true;
+                } else {
+                    $currentRate->in = false;
+                }
+            }
+            
+        }
+        
+        return $rates;
+    }
+
+    public function inBasket(Request $request){
+        $data = json_decode($request->getContent(), true);
+        $rates = Basket::find($data['basketId'])->rates()->with('rateTypes')->get();
         return $rates;
     }
     public function create(Request $request){
@@ -46,39 +65,18 @@ class RateController extends Controller
         return RateType::get();
     }
     public function addToBasket(Request $request){
-        $data = json_decode($request->getContent(), true);
-        $rates = Rate::where('rate_type_id', $data['rateId'])->get();
-        $inBasket = Basket::find($data['basketId'])->rates()->where('rate_type_id', $data['rateId'])->first();
-        if($inBasket){
-            if(count($rates) <= $inBasket->pivot->count){
-                return 'Недостаточно товаров';
-            } 
-            $inBasket->pivot->count = $inBasket->pivot->count + 1;
-            $inBasket->pivot->save();
-            return Basket::with('rates')->get();
-        } else {
-            if(count($rates) < 1){
-                return 'Недостаточно товаров';
-            }
-            $rate = RateType::find($data['rateId']);
-            $rate->baskets()->attach($data['basketId']);
-            return Basket::with('rates')->get();
+        if($request->user()->isNot(Basket::find(1)->user()->get())){
+            return 'Вы не авторизованы';
         }
+        $data = json_decode($request->getContent(), true); 
+        $rate = Rate::find($data['rateId']);
+        $rate->baskets()->attach($data['basketId']);
+        return Basket::with('rates')->get();
     }
     public function deleteFromBasket(Request $request){
         $data = json_decode($request->getContent(), true);
-        $inBasket = Basket::find($data['basketId'])->rates()->where('rate_type_id', $data['rateId'])->first();
-        if($inBasket){
-            if($inBasket->pivot->count > 1){
-                $inBasket->pivot->count = $inBasket->pivot->count - 1;
-                $inBasket->pivot->save();
-            } else{
-                $rate = RateType::find($data['rateId']);
-                $rate->baskets()->detach($data['basketId']);
-            }
-            return Basket::with('rates')->get();
-        } else {
-            return 'Товара нет в корзине';
-        }
+        $rate = Rate::find($data['rateId']);
+        $rate->baskets()->detach($data['basketId']);
+        return Basket::with('rates')->get();
     }
 }
