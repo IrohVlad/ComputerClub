@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
-import MainRates from '../components/MainRates';
-import Stats from '../components/Stats';
 import Footer from '../components/Footer';
 import MainCard from '../components/MainCard';
 
@@ -17,8 +15,6 @@ const MainPage = () => {
             <Header/>
             <main>
                 <Hero/>
-                <MainRates/>
-                <Stats/>
                 <MainCard/>
             </main>
             <Footer/>

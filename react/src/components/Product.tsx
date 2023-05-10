@@ -23,9 +23,10 @@ const Product = React.memo<IProductProps>(function({func, id, price, name, img, 
                     fetch('http://127.0.0.1:8000/api/product/add', {
                         method: 'POST',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
                         },
-                        body: JSON.stringify({basketId: 1, productId: id})
+                        body: JSON.stringify({productId: id})
                     }).then(data => data.json()).then(data => {
                         if(data.error){
                             setState({status: false, response: data.error})
@@ -38,9 +39,10 @@ const Product = React.memo<IProductProps>(function({func, id, price, name, img, 
                         fetch('http://127.0.0.1:8000/api/product/del', {
                             method: 'DELETE',
                             headers: {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
                             },
-                            body: JSON.stringify({basketId: 1, clear: false, productId: id})
+                            body: JSON.stringify({clear: false, productId: id})
                         }).then(data => data.json()).then(data => {
                             if(data.error){
                                 setState({status: false, response: data.error})
@@ -55,7 +57,8 @@ const Product = React.memo<IProductProps>(function({func, id, price, name, img, 
                         fetch('http://127.0.0.1:8000/api/product/add', {
                             method: 'POST',
                             headers: {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
                             },
                             body: JSON.stringify({basketId: 1, productId: id})
                         }).then(data => data.json()).then(data => {

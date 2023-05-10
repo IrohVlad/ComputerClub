@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('rate', function(Blueprint $table){
             $table->id()->autoIncrement();
-            $table->foreignId('rate_type_id')->constrained('rate_type');
-            $table->foreignId('pc_id')->constrained('pc');
+            $table->foreignId('rate_type_id')->constrained('rate_type')->onDelete('cascade');
+            $table->foreignId('pc_id')->constrained('pc')->onDelete('cascade');
+            $table->boolean('sold')->default(false);
+            $table->integer('buyer')->nullable();
             $table->date('date')->default('2023-04-30');
         });
     }

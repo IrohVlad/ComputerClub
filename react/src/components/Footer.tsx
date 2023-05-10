@@ -21,19 +21,19 @@ const Footer = () => {
                     <div className="footer__subcolumns">
                         <div className="footer__subcolumn">
                             <ul className="footer__links">
-                                <li className="footer__link">Расчёт стоимости</li>
+                                <li className="footer__link">Услуги</li>
                                 <li className="footer__link">Услуги</li>
                                 <li className="footer__link">Виджеты</li>
-                                <li className="footer__link">Интеграции</li>
+                                <li className="footer__link">Услуги</li>
                                 <li className="footer__link">Наши клиенты</li>
                             </ul>
                         </div>
                         <div className="footer__subcolumn">
                             <ul className="footer__links">
-                                <li className="footer__link">Кейсы</li>
-                                <li className="footer__link">Благодарственные письма</li>
-                                <li className="footer__link">Сертификаты</li>
-                                <li className="footer__link">Блог на Youtube</li>
+                                <li className="footer__link">Услуги</li>
+                                <li className="footer__link">Услуги</li>
+                                <li className="footer__link">Услуги</li>
+                                <li className="footer__link">Услуги</li>
                                 <li className="footer__link">Вопрос / Ответ</li>
                             </ul>
                         </div>
@@ -60,8 +60,8 @@ const Footer = () => {
                                         </li>
                                     </ul>
                                 </li>
-                                <li className="footer__link adress">Москва, Путевой проезд 3с1, к 902</li>
-                                <li className="rules">©WELBEX 2022. Все права защищены.</li>
+                                <li className="footer__link adress">Москва, Московский проезд</li>
+                                <li className="rules">GameStorm 2022. Все права защищены.</li>
                                 <li className="polite">Политика конфиденциальности</li>
                             </ul>
                         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import AuthPage from "../pages/AuthPage";
 import ProductsPage from "../pages/ProductsPage";
@@ -21,6 +22,38 @@ export const routes: Array<IRoute> = [
         page: <AuthPage/>
     },
     {
+        route: '*',
+        page: <Navigate to='/'/>
+    }
+]
+export const userRoutes: Array<IRoute> = [
+    {
+        route: '/',
+        page: <MainPage/>
+    },
+    {
+        route: '/products',
+        page: <ProductsPage/>
+    },
+    {
+        route: '/basket',
+        page: <BasketPage/>
+    },
+    {
+        route: '/rates',
+        page: <RatesPage/>
+    },
+    {
+        route: '*',
+        page: <Navigate to='/'/>
+    }
+]
+export const adminRoutes: Array<IRoute> = [
+    {
+        route: '/',
+        page: <MainPage/>
+    },
+    {
         route: '/products',
         page: <ProductsPage/>
     },
@@ -35,5 +68,9 @@ export const routes: Array<IRoute> = [
     {
         route: '/rates',
         page: <RatesPage/>
+    },
+    {
+        route: '*',
+        page: <Navigate to='/'/>
     }
 ]

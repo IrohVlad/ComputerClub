@@ -7,10 +7,11 @@ interface IBasketItemProps{
     title: string;
     count: number | null;
     func: Function;
+    state: any;
     id: number
 }
 
-const BasketItem = React.memo<IBasketItemProps>(({img, title, count, func, id}) => {
+const BasketItem = React.memo<IBasketItemProps>(({img, state, title, count, func, id}) => {
     return (
         <div className="basket-item">
             <div className="basket-img">
@@ -23,7 +24,8 @@ const BasketItem = React.memo<IBasketItemProps>(({img, title, count, func, id}) 
                         fetch('http://127.0.0.1:8000/api/product/del', {
                             method: 'DELETE',
                             headers: {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
                             },
                             body: JSON.stringify({basketId: 1, clear: false, productId: id})
                         }).then(data => data.json()).then(data => {
@@ -35,7 +37,8 @@ const BasketItem = React.memo<IBasketItemProps>(({img, title, count, func, id}) 
                         fetch('http://127.0.0.1:8000/api/product/add', {
                             method: 'POST',
                             headers: {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
                             },
                             body: JSON.stringify({basketId: 1, productId: id})
                         }).then(data => data.json()).then(data => {
@@ -48,7 +51,8 @@ const BasketItem = React.memo<IBasketItemProps>(({img, title, count, func, id}) 
                         fetch('http://127.0.0.1:8000/api/product/del', {
                             method: 'DELETE',
                             headers: {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
                             },
                             body: JSON.stringify({basketId: 1, clear: true, productId: id})
                         }).then(data => data.json()).then(data => {
@@ -58,9 +62,10 @@ const BasketItem = React.memo<IBasketItemProps>(({img, title, count, func, id}) 
                         fetch('http://127.0.0.1:8000/api/rate/del', {
                         method: 'DELETE',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
                         },
-                        body: JSON.stringify({basketId: 1, rateId: id})
+                        body: JSON.stringify({rateId: id})
                         }).then(data => data.json()).then(data => {
                             func()
                         })
@@ -68,7 +73,27 @@ const BasketItem = React.memo<IBasketItemProps>(({img, title, count, func, id}) 
                 }} className="basket-delete">
                     <img src={del} alt="" />
                 </div>
-                <div className="basket-buy _gold-button">Купить</div>
+                <div onClick={()=>{
+                    if(state.name == 'products'){
+                        fetch('http://127.0.0.1:8000/api/product/buy', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify({product_type_id: id})
+                        }).then(func())
+                    } else if (state.name == 'rates') {
+                        fetch('http://127.0.0.1:8000/api/rate/buy', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify({rate_id: id})
+                        }).then(func())
+                    }
+                }} className="basket-buy _gold-button">Купить</div>
             </div>
         </div>
     );

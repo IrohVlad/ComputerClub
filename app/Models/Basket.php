@@ -11,6 +11,7 @@ class Basket extends Model
     public $table = "basket";
     // protected $fillable = ['user_id'];
     public $timestamps = false;
+    public $fillable = ['user_id'];
 
     public function user() {
         return $this->belongsTo(User::class);

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rate_type', function(Blueprint $table){
             $table->id()->autoIncrement();
             $table->string('title');
-            $table->string('price');
+            $table->integer('price');
             $table->string('img')->default('hero.png');
             $table->string('short_description');
             $table->text('description');

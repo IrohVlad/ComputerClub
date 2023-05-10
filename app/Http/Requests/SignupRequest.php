@@ -24,7 +24,7 @@ class SignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mail'=>'required|email|unique:user,mail',
+            'email'=>'required|email|unique:user,email',
             'password'=>[
                 'required',
                 Password::min(8)->letters()->numbers()

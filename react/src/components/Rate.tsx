@@ -35,7 +35,8 @@ const Rate = React.memo<IRateProps>(({func, rates, id, price, title, img, short_
                         fetch('http://127.0.0.1:8000/api/rate/add', {
                         method: 'POST',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
                         },
                         body: JSON.stringify({basketId: 1, rateId: activeDate.id})
                     }).then(data => data.json()).then(data => {
@@ -60,7 +61,7 @@ const Rate = React.memo<IRateProps>(({func, rates, id, price, title, img, short_
         </div>
         <div className="dates">
             {rates.length ? rates.map((value)=>{
-                return <Date func={setActiveDate} active={activeDate.id} key={value.id} id={value.id} date={value.date} In={value.in}/>
+                return <Date func={setActiveDate} active={activeDate.id} key={value.id} id={value.id} date={value.date} sold={value.sold} In={value.in}/>
             }): "Все даты заняты"}
         </div>
         </>

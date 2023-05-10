@@ -16,11 +16,9 @@ const RatesPage = () => {
     const [products, setProducts] = React.useState<Array<IPRoduct>>([]);
     const getRates =React.useCallback(async () => {
         await fetch('http://127.0.0.1:8000/api/rate/all', {
-            method: 'POST',
             headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({basketId: 1})
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
         }).then(data => data.json()).then(data => {
             setProducts(data);
         });

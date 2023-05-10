@@ -14,16 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::table('pc')->insert([
+            'id' => 1
+        ]);
         foreach(range(1, 5) as $i){
-            DB::table('user')->insert([
-                'mail' => "mail$i@mail.ru",
-                'password_hash' => "wfdfsfsefefsef123$i",
-                "nickname" => "user$i",
-                "role" => "USER"
-            ]);
-            DB::table('basket')->insert([
-                'user_id' => $i
-            ]);
             DB::table('product_type')->insert([
                 'name' => "name$i",
                 'price' => 10,
@@ -36,13 +30,6 @@ class DatabaseSeeder extends Seeder
             ]);
             DB::table('product')->insert([
                 'product_type_id' => 1
-            ]);
-            DB::table('basket_product_type')->insert([
-                'product_type_id' => $i,
-                'basket_id' => 1
-            ]);
-            DB::table('pc')->insert([
-                'id' => $i
             ]);
             DB::table('rate_type')->insert([
                 'title' => "Утро$i",
@@ -58,13 +45,9 @@ class DatabaseSeeder extends Seeder
                 "value" => 'Хуан',
             ]);
             DB::table('rate')->insert([
-                'rate_type_id' => 1,
                 'pc_id' => 1,
-                'date' => '2023-04-30'
-            ]);
-            DB::table('basket_rate')->insert([
-                'basket_id' => 1,
-                'rate_id' => 1,
+                'rate_type_id' => $i,
+                'date' => "2023-05-0$i"
             ]);
         }
     }

@@ -10,6 +10,8 @@ class Rate extends Model
     use HasFactory;
 
     protected $table = 'rate';
+    public $timestamps = false;
+    protected $fillable = ['rate_type_id', 'pc_id', 'date'];
     public function pc(){
         return $this->belongsTo(Pc::class);
     }

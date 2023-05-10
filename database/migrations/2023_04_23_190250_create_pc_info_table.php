@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pc_info', function(Blueprint $table){
             $table->id()->autoIncrement();
-            $table->foreignId('pc_id')->constrained('pc');
+            $table->foreignId('pc_id')->constrained('pc')->onDelete('cascade');
             $table->string('title');
             $table->string('value');
         });

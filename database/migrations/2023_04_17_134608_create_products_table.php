@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->foreignId('product_type_id')->constrained('product_type');
+            $table->foreignId('product_type_id')->constrained('product_type')->onDelete('cascade');
+            $table->boolean('sold')->default(false);
+            $table->integer('buyer')->nullable();
             $table->timestamps();
         });
     }
