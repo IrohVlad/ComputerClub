@@ -7,6 +7,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Models\Rate;
 use App\Models\RateType;
 use App\Models\Pc;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -20,15 +21,36 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(
             function (){
-                $type = RateType::first();
-                    $pc = Pc::first();
-                    Rate::create([
-                        'rate_type_id' => $type->id,
-                        'pc_id' => $pc->id,
-                        'date' => '2025-04-30'
-                    ]);
+                $yesterday = Carbon::now()->add(-1, 'day');
+                $rates = Rate::where('sold', false)->get();
+                foreach($rates as $rate){
+                    if($yesterday->greaterThan($rate->date)){
+                        $rate->expired = true;
+                        $rate->save();
+                    }
+                }
+                $types = RateType::get();
+                $pcs = Pc::get();
+                for($i = 1; $i < 7; $i++){
+                    $date = Carbon::now()->add($i, 'day')->toDateString();
+                    foreach($types as $type){
+                        $ratesCollection = Rate::where('rate_type_id', $type->id)->where('date', $date)->get();
+                        if(count($ratesCollection) < count($pcs)){
+                            foreach($pcs as $pc){
+                                $rate = Rate::where('rate_type_id', $type->id)->where('pc_id', $pc->id)->where('date', $date)->first();
+                                if(!$rate){
+                                    Rate::create([
+                                        'rate_type_id' => $type->id,
+                                        'pc_id' => $pc->id,
+                                        'date' => $date
+                                    ]);
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        )->everyMinute();
+        )->daily();
     }
 
     /**

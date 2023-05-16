@@ -55,7 +55,7 @@ const Rate = React.memo<IRateProps>(({func, rates, id, price, title, img, short_
             </div>
             <div className="second-column">
                 <div className="product-img">
-                    <img src={`http://127.0.0.1:8000/storage/hero.png`} alt="" />
+                    <img src={`http://127.0.0.1:8000/storage/${img.substr(7)}`} alt="" />
                 </div>
             </div>
         </div>

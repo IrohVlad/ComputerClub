@@ -79,19 +79,22 @@ const AdminPage = () => {
                             fetch('http://127.0.0.1:8000/api/image', {
                                 method: 'POST',
                                 headers: {
+                                    // 'Content-type': 'multipart/form-data',
                                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                                    'Accept': 'multipart/form-data',
-                                    'Content-type': 'multipart/form-data'
+                                    // 'Accept': 'multipart/form-data',
+                                    // 'Access-Control-Allow-Origin' : 'http://127.0.0.1:3000',
+                                    // 'Access-Control-Request-Method': 'POST',
+                                    // 'Origin': 'http://127.0.0.1:3000'
                                 },
                                 body: data
                             })
                           }
                     }} />
                     {state.name == 'Product' && product.length && product.map((value, index)=>{
-                        return <AdminProduct index={index} state={product} setter={setProducts} func={getProducts} key={value.id} id={value.id} title={value.name} price={value.price} product_info={value.product_info}/>
+                        return <AdminProduct img={value.img} index={index} state={product} setter={setProducts} func={getProducts} key={value.id} id={value.id} title={value.name} price={value.price} product_info={value.product_info}/>
                     }) }
                     {state.name == 'Rate' && rate.length && rate.map((value, index)=>{
-                        return <AdminRate rates={value.rates} index={index} state={rate} setter={setRates} func={getRates} key={value.id} id={value.id} title={value.title} price={value.price} short_description={value.short_description} description={value.description}/>
+                        return <AdminRate img={value.img} rates={value.rates} index={index} state={rate} setter={setRates} func={getRates} key={value.id} id={value.id} title={value.title} price={value.price} short_description={value.short_description} description={value.description}/>
                     }) }
                     {state.name == 'Pc' && pc.length && pc.map((value, index)=>{
                         return <AdminPc pc_info={value.pc_info} index={index} state={pc} setter={setPcs} func={getPcs} key={value.id} id={value.id} />

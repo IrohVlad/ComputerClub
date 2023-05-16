@@ -40,6 +40,7 @@ Route::prefix('rate')->group(function(){
     Route::middleware('auth:sanctum')->get('/admin', [RateController::class, 'admin']);
     Route::middleware('auth:sanctum')->post('/', [RateController::class, 'create']);
     Route::middleware('auth:sanctum')->post('/date', [RateController::class, 'createDate']);
+    Route::middleware('auth:sanctum')->post('/img', [RateController::class, 'setImage']);
     Route::middleware('auth:sanctum')->patch('/', [RateController::class, 'update']);
     Route::middleware('auth:sanctum')->patch('/date', [RateController::class, 'updateDate']);
     Route::middleware('auth:sanctum')->delete('/', [RateController::class, 'delete']);
@@ -70,3 +71,6 @@ Route::prefix('pc')->group(function(){
     Route::middleware('auth:sanctum')->delete('/', [PcController::class, 'delete']);
     Route::middleware('auth:sanctum')->delete('/info', [PcController::class, 'deleteInfo']);
 });
+Route::middleware('auth:sanctum')->get('/image', [FileController::class, "all"]);
+Route::middleware('auth:sanctum')->post('/image', [FileController::class, "getImage"]);
+Route::middleware('auth:sanctum')->delete('/image', [FileController::class, "delete"]);

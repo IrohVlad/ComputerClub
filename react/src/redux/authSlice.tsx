@@ -4,12 +4,14 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 export interface CounterState {
   before: boolean;
   auth: boolean;
+  errors: Object;
   role: string;
 }
 
 const initialState: CounterState = {
   before: true,
   auth: false,
+  errors: {},
   role: ''
 }
 
@@ -20,7 +22,11 @@ export const authSlice = createSlice({
     login: (state, action: PayloadAction<string>) => {
         state.role = action.payload;
         state.auth = true;
+        state.errors = {};
         state.before = false;
+    },
+    loginError: (state, action: PayloadAction<string>) =>{
+      state.errors = action.payload;
     },
     after: (state) => {
       state.before = false;
@@ -28,6 +34,7 @@ export const authSlice = createSlice({
     logout: (state) => {
         state.role = '';
         state.auth = false;
+        state.errors = {};
     },
     // incrementByAmount: (state, action: PayloadAction<number>) => {
     //   state.value += action.payload
@@ -48,6 +55,15 @@ export const RegisterRequest = async (dispatch, data: Object) => {
     let response = await request.json()
     localStorage.setItem('token', response.token)
     dispatch(login(response.role))
+  } else {
+    let response = await request.json()
+    let errors;
+    if(response.errors){
+      errors = response.errors;
+    } else {
+      errors = 'Произошла ошибка'
+    }
+    dispatch(loginError(errors))
   }
 }
 export const LoginRequest = async (dispatch, data: Object) => {
@@ -63,6 +79,15 @@ export const LoginRequest = async (dispatch, data: Object) => {
     let response = await request.json()
     localStorage.setItem('token', response.token)
     dispatch(login(response.role))
+  } else {
+    let response = await request.json()
+    let errors;
+    if(response.errors){
+      errors = response.errors;
+    } else {
+      errors = 'Произошла ошибка'
+    }
+    dispatch(loginError(errors))
   }
 }
 export const RefreshRequest = async (dispatch) => {
@@ -100,6 +125,6 @@ export const LogoutRequest = async (dispatch) => {
 }
 
 // Action creators are generated for each case reducer function
-export const { login, logout, after } = authSlice.actions
+export const { login, loginError, logout, after } = authSlice.actions
 
 export default authSlice.reducer

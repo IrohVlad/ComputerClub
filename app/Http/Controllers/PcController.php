@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Pc;
 use App\Models\PcInfo;
@@ -11,11 +12,18 @@ use App\Models\Rate;
 class PcController extends Controller
 {
     public function admin(){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $pcs = Pc::with('pcInfo', 'rates')->get();
         return $pcs;
     }
     public function create(Request $request){
-        $data = json_decode($request->getContent(), true);
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $pc = Pc::create([
         ]);
         $pcSome = Pc::first();
@@ -31,6 +39,10 @@ class PcController extends Controller
         return Pc::get();
     }
     public function createInfo(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         PcInfo::create([
             'pc_id' => $data['pc_id'],
@@ -40,6 +52,10 @@ class PcController extends Controller
         return PcInfo::get();
     }
     public function updateInfo(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $rate = PcInfo::find($data['id']);
         $rate->title = $data['title'];
@@ -48,11 +64,19 @@ class PcController extends Controller
         return PcInfo::get();
     }
     public function delete(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         Pc::destroy($data['id']);
         return Pc::get();
     }
     public function deleteInfo(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         PcInfo::destroy($data['id']);
         return PcInfo::get();

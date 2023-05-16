@@ -8,6 +8,7 @@ interface IPRoduct{
     price: number;
     img: string;
     count: number;
+    product_info: Array<object>;
 }
 
 const ProductsPage = () => {
@@ -31,7 +32,7 @@ const ProductsPage = () => {
             <section className="products-section">
                 <div className="products _container">
                     {products.length && products.map((value) => {
-                        return <Product key={value.id} func={getProducts} id={value.id} count={value.count} price={value.price} name={value.name} img={value.img}/>
+                        return <Product key={value.id} info={value.product_info} func={getProducts} id={value.id} count={value.count} price={value.price} name={value.name} img={value.img}/>
                     })}
                 </div>
             </section>

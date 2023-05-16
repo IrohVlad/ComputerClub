@@ -32,6 +32,10 @@ class ProductController extends Controller
         return $result;
     }
     public function admin(){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $products = ProductType::with('productInfo')->get();
         return $products;
     }
@@ -57,6 +61,10 @@ class ProductController extends Controller
         return $products;
     }
     public function create(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         ProductType::create([
             'name' => $data['name'],
@@ -65,6 +73,10 @@ class ProductController extends Controller
         return ProductType::get();
     }
     public function createInfo(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         ProductInfo::create([
             'product_type_id' => $data['product_type_id'],
@@ -74,6 +86,10 @@ class ProductController extends Controller
         return ProductInfo::get();
     }
     public function update(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $rate = ProductType::find($data['id']);
         $rate->name = $data['name'];
@@ -82,6 +98,10 @@ class ProductController extends Controller
         return ProductType::get();
     }
     public function updateInfo(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $rate = ProductInfo::find($data['id']);
         $rate->title = $data['title'];
@@ -90,6 +110,10 @@ class ProductController extends Controller
         return ProductInfo::get();
     }
     public function setImage(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $rate = ProductType::find($data['id']);
         $rate->img = $data['img'];
@@ -97,11 +121,19 @@ class ProductController extends Controller
         return ProductType::get();
     }
     public function delete(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         ProductType::destroy($data['id']);
         return ProductType::get();
     }
     public function deleteInfo(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         ProductInfo::destroy($data['id']);
         return ProductInfo::get();

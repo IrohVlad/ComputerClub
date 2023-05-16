@@ -17,9 +17,6 @@ class RateController extends Controller
         if(!$user){
             return response('unauthorized', 401);
         }
-        if(!$user->tokenCan('admin')){
-            return response('forbidden', 403);
-        }
         $basket = $user->basket;
         $rates = RateType::with('rates')->get();
         foreach($rates as $rate){
@@ -39,6 +36,10 @@ class RateController extends Controller
         return $rates;
     }
     public function admin(){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $rates = RateType::with('rates')->get();
         
         return $rates;
@@ -59,6 +60,10 @@ class RateController extends Controller
         return $basket->rates()->with('rateTypes')->get();
     }
     public function create(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         RateType::create([
             'title' => $data['title'],
@@ -69,6 +74,10 @@ class RateController extends Controller
         return RateType::get();
     }
     public function createDate(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $pcs = Pc::get();
         foreach($pcs as $pc){
@@ -81,6 +90,10 @@ class RateController extends Controller
         return Rate::get();
     }
     public function update(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $rate = RateType::find($data['id']);
         $rate->title = $data['title'];
@@ -91,6 +104,10 @@ class RateController extends Controller
         return RateType::get();
     }
     public function updateDate(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $rate = Rate::find($data['id']);
         if(Carbon::parse(Carbon::now()->format('Y-m-d'))->gt(Carbon::parse($data['date']))){
@@ -103,6 +120,10 @@ class RateController extends Controller
         return Rate::get();
     }
     public function setImage(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         $rate = RateType::find($data['id']);
         $rate->img = $data['img'];
@@ -110,11 +131,19 @@ class RateController extends Controller
         return RateType::get();
     }
     public function delete(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         RateType::destroy($data['id']);
         return RateType::get();
     }
     public function deleteDate(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
         $data = json_decode($request->getContent(), true);
         Rate::destroy($data['id']);
         return Rate::get();

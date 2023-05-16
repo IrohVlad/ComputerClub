@@ -1,9 +1,10 @@
 import React from 'react';
 import Delete from '../assets/delete.svg'
 import AdminDate from './AdminDate';
+import ImageGrid from './ImageGrid';
 
 
-const AdminRate = ({state, setter, index, func, title, price, rates, short_description, description, id}) => {
+const AdminRate = ({state, setter, index, func, title, price, img, rates, short_description, description, id}) => {
     const [fetchState, setFetchState] = React.useState({text: ''})
     return (
         <div className='admin-product'>
@@ -108,6 +109,10 @@ const AdminRate = ({state, setter, index, func, title, price, rates, short_descr
                     }
                 }} value={description} name="price" type="text" placeholder='price' />
             </div>
+            <div className="image">
+                <img src={`http://127.0.0.1:8000/storage/${img.substr(7)}`} alt="" />
+            </div>
+            <ImageGrid id={id} state={'rate'}/>
             <AdminDate rates={rates} rate_index={index} state={state} setter={setter} rate_id={id} func={func}/>
             <div onClick={()=>{
                 fetch('http://127.0.0.1:8000/api/rate', {
