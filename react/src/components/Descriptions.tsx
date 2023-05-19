@@ -12,7 +12,8 @@ const Descriptions = ({product_info, product_index, state, setter, product_id, f
     return (
         <div className='descriptions'>
             {product_info && product_info.map((value: IAdminDescription, index)=>{
-                return <DescriptionItem product_index={product_index} index={index} state={state} setter={setter} key={value.id} func={func} product_type_id={value.product_type_id} title={value.title} value={value.value} id={value.id}/>
+                return <DescriptionItem product_index={product_index} index={index} state={state} setter={setter} key={value.id}
+                 func={func} product_type_id={value.product_type_id} title={value.title} value={value.value} id={value.id}/>
             })}
             <div onClick={()=>{
                 fetch('http://127.0.0.1:8000/api/product/info', {

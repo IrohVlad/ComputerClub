@@ -11,7 +11,8 @@ const PcDescriptions = ({pc_info, pc_index, pc_id, state, setter, func}) => {
     return (
         <div className='descriptions'>
             {pc_info && pc_info.map((value: IAdminPcDescription, index)=>{
-                return <PcDescriptionItem pc_index={pc_index} index={index} state={state} setter={setter} key={value.id} func={func} pc_id={value.pc_id} title={value.title} value={value.value} id={value.id}/>
+                return <PcDescriptionItem pc_index={pc_index} index={index} state={state} setter={setter} key={value.id} 
+                func={func} pc_id={value.pc_id} title={value.title} value={value.value} id={value.id}/>
             })}
             <div onClick={()=>{
                 fetch('http://127.0.0.1:8000/api/pc/info', {

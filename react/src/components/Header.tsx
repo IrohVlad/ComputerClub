@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import logo from '../assets/logo_welbex.svg'
 import teleg from '../assets/telegram.svg'
 import whatsapp from '../assets/whatsapp.svg'
 import basket from '../assets/basket.svg'
@@ -16,7 +15,7 @@ const Header = () => {
     return (
         <header>
             <div className="header _container">
-                <div className="header__content_left">
+                <div className="header__content_left"> 
                     <div className="header__logo logo">
                     <Link to="/">GameStorm</Link>
                     </div>

@@ -59,6 +59,7 @@ const AdminRate = ({state, setter, index, func, title, price, img, rates, short_
                     }
                 }} value={price} name="price" type="text" placeholder='price' />
             </div>
+
             <div className="input">
                 <label htmlFor="price">Краткое описание</label>
                 <input onBlur={()=>{
@@ -112,6 +113,7 @@ const AdminRate = ({state, setter, index, func, title, price, img, rates, short_
             <div className="image">
                 <img src={`http://127.0.0.1:8000/storage/${img.substr(7)}`} alt="" />
             </div>
+            
             <ImageGrid id={id} state={'rate'}/>
             <AdminDate rates={rates} rate_index={index} state={state} setter={setter} rate_id={id} func={func}/>
             <div onClick={()=>{

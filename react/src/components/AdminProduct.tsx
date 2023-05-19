@@ -61,6 +61,7 @@ const AdminProduct = React.memo<any>(({state, setter, img, index, func, title, p
             <div className="image">
                 <img src={`http://127.0.0.1:8000/storage/${img.substr(7)}`} alt="" />
             </div>
+            
             <ImageGrid id={id} state={'product'}/>
             <Descriptions state={state} setter={setter} func={func} product_index={index} product_id={id} product_info={product_info}/>
             <div onClick={()=>{

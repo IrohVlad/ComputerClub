@@ -31,9 +31,6 @@ const Footer = () => {
                         <div className="footer__subcolumn">
                             <ul className="footer__links">
                                 <li className="footer__link">Услуги</li>
-                                <li className="footer__link">Услуги</li>
-                                <li className="footer__link">Услуги</li>
-                                <li className="footer__link">Услуги</li>
                                 <li className="footer__link">Вопрос / Ответ</li>
                             </ul>
                         </div>
@@ -47,19 +44,6 @@ const Footer = () => {
                         <div className="footer__subcolumn">
                             <ul className="footer__links">
                                 <li className="footer__link number">+7 555 555-55-55</li>
-                                <li className="footer__link">
-                                    <ul className="footer__icons">
-                                        <li className="footer__icon">
-                                            <img src="assets/telegram.svg" alt=""/>
-                                        </li>
-                                        <li className="footer__icon">
-                                            <img src="assets/viber.svg" alt=""/>
-                                        </li>
-                                        <li className="footer__icon">
-                                            <img src="assets/whatsapp.svg" alt=""/>
-                                        </li>
-                                    </ul>
-                                </li>
                                 <li className="footer__link adress">Москва, Московский проезд</li>
                                 <li className="rules">GameStorm 2022. Все права защищены.</li>
                                 <li className="polite">Политика конфиденциальности</li>

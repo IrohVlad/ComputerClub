@@ -55,6 +55,7 @@ const Product = React.memo<IProductProps>(function({func, id, price, name, info,
                             }
                         })
                     }} className="minus">-</div>
+                    
                     <div className="count">{count}</div>
                     <div onClick={()=>{
                         fetch('http://127.0.0.1:8000/api/product/add', {

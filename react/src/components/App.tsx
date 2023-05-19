@@ -27,7 +27,7 @@ const App = () => {
                     return <Route element={value.page} path={value.route} key={index}/>
                 })}
             </Routes>
-        </BrowserRouter> : ''
+        </BrowserRouter> : <></>
     );
 };
 

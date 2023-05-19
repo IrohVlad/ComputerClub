@@ -38,10 +38,12 @@ const Basket = () => {
         <section className='basket-section'>
             <div className={!items.products.length && !items.rates.length ? "basket basket-empty" : "basket _container"}>
                 {items.products.length ? items.products.map((value)=>{
-                    return <BasketItem func={getRates} state={{name: 'products'}} id={value.id} key={value.id} title={value.name} count={value.pivot.count} img={value.img}/>
+                    return <BasketItem func={getRates} state={{name: 'products'}} id={value.id} key={value.id} title={value.name} 
+                    count={value.pivot.count} img={value.img}/>
                 }): ''}
                 {items.rates.length ? items.rates.map((value)=>{
-                    return <BasketItem func={getRates} state={{name: 'rates'}} id={value.id} key={value.id} title={`Тариф ${value.rate_types.title} (${value.date})`} count={null} img={value.rate_types.img}/>
+                    return <BasketItem func={getRates} state={{name: 'rates'}} id={value.id} key={value.id}
+                     title={`Тариф ${value.rate_types.title} (${value.date})`} count={null} img={value.rate_types.img}/>
                 }): ''}
                 {!items.products.length && !items.rates.length && 'Пусто'}
             </div>

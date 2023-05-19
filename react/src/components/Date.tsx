@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Date = ({date, id, active, sold, In, func}) => {
+const Date = ({date, id, active, sold, expired, In, func}) => {
     return (
-        !sold ? <div onClick={()=>{
+        !sold && !expired ? <div onClick={()=>{
             if(!In){
                 func({id})
             }

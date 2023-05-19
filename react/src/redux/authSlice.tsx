@@ -36,9 +36,6 @@ export const authSlice = createSlice({
         state.auth = false;
         state.errors = {};
     },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
   },
 })
 

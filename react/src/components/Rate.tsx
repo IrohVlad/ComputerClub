@@ -47,8 +47,10 @@ const Rate = React.memo<IRateProps>(({func, rates, id, price, title, img, short_
                         func()
                     })
                     }
-                }} className={!state.status ?  "product-button product-button-error" : activeDate.id ? "product-button" : "product-button product-button-disabled"}>Купить</div>
+                }} className={!state.status ?  "product-button product-button-error" : activeDate.id ?
+                 "product-button" : "product-button product-button-disabled"}>Купить</div>
                 </div>
+
                 <div>
                     {!state.status && state.response}
                 </div>
@@ -61,7 +63,8 @@ const Rate = React.memo<IRateProps>(({func, rates, id, price, title, img, short_
         </div>
         <div className="dates">
             {rates.length ? rates.map((value)=>{
-                return <Date func={setActiveDate} active={activeDate.id} key={value.id} id={value.id} date={value.date} sold={value.sold} In={value.in}/>
+                return <Date func={setActiveDate} active={activeDate.id} key={value.id} id={value.id} date={value.date} 
+                sold={value.sold} expired={value.expired} In={value.in}/>
             }): "Все даты заняты"}
         </div>
         </>

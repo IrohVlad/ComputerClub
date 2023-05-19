@@ -60,6 +60,7 @@ const AdminPage = () => {
                     setPcs(data);
                 });
     }, [])
+
     React.useEffect(()=>{
         getProducts()
         getRates()
@@ -91,13 +92,16 @@ const AdminPage = () => {
                           }
                     }} />
                     {state.name == 'Product' && product.length && product.map((value, index)=>{
-                        return <AdminProduct img={value.img} index={index} state={product} setter={setProducts} func={getProducts} key={value.id} id={value.id} title={value.name} price={value.price} product_info={value.product_info}/>
+                        return <AdminProduct img={value.img} index={index} state={product} setter={setProducts} 
+                        func={getProducts} key={value.id} id={value.id} title={value.name} price={value.price} product_info={value.product_info}/>
                     }) }
                     {state.name == 'Rate' && rate.length && rate.map((value, index)=>{
-                        return <AdminRate img={value.img} rates={value.rates} index={index} state={rate} setter={setRates} func={getRates} key={value.id} id={value.id} title={value.title} price={value.price} short_description={value.short_description} description={value.description}/>
+                        return <AdminRate img={value.img} rates={value.rates} index={index} state={rate} setter={setRates} 
+                        func={getRates} key={value.id} id={value.id} title={value.title} price={value.price} short_description={value.short_description} description={value.description}/>
                     }) }
                     {state.name == 'Pc' && pc.length && pc.map((value, index)=>{
-                        return <AdminPc pc_info={value.pc_info} index={index} state={pc} setter={setPcs} func={getPcs} key={value.id} id={value.id} />
+                        return <AdminPc pc_info={value.pc_info} index={index} state={pc} setter={setPcs} 
+                        func={getPcs} key={value.id} id={value.id} />
                     }) }
                     {state.name == "Product" && <div onClick={()=>{
                         fetch('http://127.0.0.1:8000/api/product', {
@@ -112,6 +116,7 @@ const AdminPage = () => {
                     }} className="new-button">
                     +
                     </div>}
+                    
                     {state.name == 'Rate' && <div onClick={()=>{
                         fetch('http://127.0.0.1:8000/api/rate', {
                             method: 'POST',

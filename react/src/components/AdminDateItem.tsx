@@ -27,7 +27,8 @@ const AdminDateItem = ({id, date, func, state, rate_index, setter, index}) => {
                         })
                     }} onChange={(e)=>{
                         if(state.length){
-                            setter([...state.slice(0, rate_index), {...state[rate_index], rates: [...state[rate_index].rates.slice(0, index), {...state[rate_index].rates[index], date: e.target.value}, ...state[rate_index].rates.slice(index + 1) ]}, ...state.slice(rate_index + 1)])
+                            setter([...state.slice(0, rate_index), {...state[rate_index], rates: [...state[rate_index].rates.slice(0, index),
+                                 {...state[rate_index].rates[index], date: e.target.value}, ...state[rate_index].rates.slice(index + 1) ]}, ...state.slice(rate_index + 1)])
                         }
                     }} value={date} name="title" type="date" placeholder='title' />
                 </div>

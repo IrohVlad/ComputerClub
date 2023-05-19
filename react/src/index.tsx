@@ -8,10 +8,8 @@ import { store } from './redux/store';
 
 const root = createRoot(document.querySelector('._wrapper'));
 
-root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </React.StrictMode>
+root.render( 
+    <Provider store={store}>
+        <App/>
+    </Provider>
 )

@@ -27,7 +27,10 @@ const DescriptionItem = ({state, setter, product_index, index, product_type_id, 
                         })
                     }} onChange={(e)=>{
                         if(state.length){
-                            setter([...state.slice(0, product_index), {...state[product_index], product_info: [...state[product_index].product_info.slice(0, index), {...state[product_index].product_info[index], title: e.target.value}, ...state[product_index].product_info.slice(index + 1) ]}, ...state.slice(product_index + 1)])
+                            setter([...state.slice(0, product_index), 
+                                {...state[product_index], product_info: [...state[product_index].product_info.slice(0, index),
+                                     {...state[product_index].product_info[index], title: e.target.value}, ...state[product_index].product_info.slice(index + 1) ]}, 
+                                     ...state.slice(product_index + 1)])
                         }
                     }} value={title} name="title" type="text" placeholder='title' />
                 </div>
@@ -52,10 +55,13 @@ const DescriptionItem = ({state, setter, product_index, index, product_type_id, 
                         })
                     }} onChange={(e)=>{
                         if(state.length){
-                            setter([...state.slice(0, product_index), {...state[product_index], product_info: [...state[product_index].product_info.slice(0, index), {...state[product_index].product_info[index], value: e.target.value}, ...state[product_index].product_info.slice(index + 1) ]}, ...state.slice(product_index + 1)])
+                            setter([...state.slice(0, product_index), {...state[product_index], product_info: [...state[product_index].product_info.slice(0, index), 
+                                {...state[product_index].product_info[index], value: e.target.value}, ...state[product_index].product_info.slice(index + 1) ]}, 
+                                ...state.slice(product_index + 1)])
                         }
                     }} value={value} name="value" type="text" placeholder='value' />
                 </div>
+                
                 <div onClick={()=>{
                     fetch('http://127.0.0.1:8000/api/product/info', {
                         method: 'DELETE',

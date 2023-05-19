@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SignupRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Validation\Validator;
 use App\Models\Basket;
 use Illuminate\Support\Facades\Auth;
 

@@ -33,7 +33,8 @@ const RatesPage = () => {
             <section className="products-section">
                 <div className="products _container">
                     {products.length && products.map((value) => {
-                        return <Rate rates={value.rates} key={value.id} func={getRates} id={value.id} description={value.description} short_description={value.short_description} price={value.price} title={value.title} img={value.img}/>
+                        return <Rate rates={value.rates} key={value.id} func={getRates} id={value.id} description={value.description}
+                        short_description={value.short_description} price={value.price} title={value.title} img={value.img}/>
                     })}
                 </div>
             </section>

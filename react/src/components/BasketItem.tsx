@@ -46,6 +46,7 @@ const BasketItem = React.memo<IBasketItemProps>(({img, state, title, count, func
                         })
                     }} className="plus">+</div>
                 </div>: ''}
+                
                 <div onClick={()=>{
                     if(count){
                         fetch('http://127.0.0.1:8000/api/product/del', {
@@ -55,7 +56,7 @@ const BasketItem = React.memo<IBasketItemProps>(({img, state, title, count, func
                                 'Authorization': `Bearer ${localStorage.getItem('token')}`
                             },
                             body: JSON.stringify({basketId: 1, clear: true, productId: id})
-                        }).then(data => data.json()).then(data => {
+                        }).then(data => data.json()).then(() => {
                             func()
                         })
                     } else {

@@ -35,15 +35,6 @@ class RateController extends Controller
         
         return $rates;
     }
-    public function admin(){
-        $user = Auth::user();
-        if(!$user->tokenCan('admin')){
-            return response('forbidden', 403);
-        }
-        $rates = RateType::with('rates')->get();
-        
-        return $rates;
-    }
 
     public function inBasket(Request $request){
         $user = Auth::user();
@@ -58,6 +49,15 @@ class RateController extends Controller
             }
         }  
         return $basket->rates()->with('rateTypes')->get();
+    }
+    public function admin(){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
+        $rates = RateType::with('rates')->get();
+        
+        return $rates;
     }
     public function create(Request $request){
         $user = Auth::user();

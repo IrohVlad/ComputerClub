@@ -31,14 +31,6 @@ class ProductController extends Controller
         }  
         return $result;
     }
-    public function admin(){
-        $user = Auth::user();
-        if(!$user->tokenCan('admin')){
-            return response('forbidden', 403);
-        }
-        $products = ProductType::with('productInfo')->get();
-        return $products;
-    }
     public function inBasket(Request $request){
         $user = Auth::user();
         if(!$user){
@@ -58,6 +50,14 @@ class ProductController extends Controller
                 $basket->products()->detach($product->id);
             }
         }    
+        return $products;
+    }
+    public function admin(){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
+        $products = ProductType::with('productInfo')->get();
         return $products;
     }
     public function create(Request $request){

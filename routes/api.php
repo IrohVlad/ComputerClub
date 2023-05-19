@@ -7,7 +7,6 @@ use App\Http\Controllers\RateController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PcController;
-use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +19,11 @@ use Carbon\Carbon;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
 Route::post('/signup', [AuthController::class, "signup"]);
 Route::post('/login', [AuthController::class, "login"]);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, "logout"]);
 Route::middleware('auth:sanctum')->post('/refresh', [AuthController::class, "refresh"]);
-Route::prefix('type')->group(function(){
-    Route::get('/', [RateController::class, 'index']);
-});
+
 Route::prefix('rate')->group(function(){
     Route::middleware('auth:sanctum')->get('/all', [RateController::class, 'index']);
     Route::middleware('auth:sanctum')->post('/basket', [RateController::class, 'inBasket']);

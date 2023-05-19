@@ -14,63 +14,49 @@ interface IRoute {
 
 export const routes: Array<IRoute> = [
     {
-        route: '/',
-        page: <MainPage/>
+        route: '/', page: <MainPage/>
     },
     {
-        route: '/auth',
-        page: <AuthPage/>
+        route: '/auth', page: <AuthPage/>
     },
     {
-        route: '*',
-        page: <Navigate to='/'/>
+        route: '*', page: <Navigate to='/'/>
     }
 ]
 export const userRoutes: Array<IRoute> = [
     {
-        route: '/',
-        page: <MainPage/>
+        route: '/', page: <MainPage/>
     },
     {
-        route: '/products',
-        page: <ProductsPage/>
+        route: '/products', page: <ProductsPage/>
     },
     {
-        route: '/basket',
-        page: <BasketPage/>
+        route: '/basket', page: <BasketPage/>
     },
     {
-        route: '/rates',
-        page: <RatesPage/>
+        route: '/rates', page: <RatesPage/>
     },
     {
-        route: '*',
-        page: <Navigate to='/'/>
+        route: '*', page: <Navigate to='/'/>
     }
 ]
 export const adminRoutes: Array<IRoute> = [
     {
-        route: '/',
-        page: <MainPage/>
+        route: '/', page: <MainPage/>
     },
     {
-        route: '/products',
-        page: <ProductsPage/>
+        route: '/products', page: <ProductsPage/>
     },
     {
-        route: '/admin',
-        page: <AdminPage/>
+        route: '/admin', page: <AdminPage/>
     },
     {
-        route: '/basket',
-        page: <BasketPage/>
+        route: '/basket', page: <BasketPage/>
     },
     {
-        route: '/rates',
-        page: <RatesPage/>
+        route: '/rates', page: <RatesPage/>
     },
     {
-        route: '*',
-        page: <Navigate to='/'/>
+        route: '*', page: <Navigate to='/'/>
     }
 ]
