@@ -1,15 +1,19 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import teleg from '../assets/telegram.svg'
-import whatsapp from '../assets/whatsapp.svg'
-import basket from '../assets/basket.svg'
+import teleg from '../../assets/telegram.svg'
+import whatsapp from '../../assets/whatsapp.svg'
+import basket from '../../assets/basket.svg'
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../redux/store';
-import { LogoutRequest } from '../redux/authSlice';
+import { LogoutRequest, authState } from '../../features/auth';
 import { useSelector, useDispatch } from 'react-redux';
 
+interface IAuth {
+    auth: authState;
+    [key: string]: any;
+}
+
 const Header = () => {
-    const auth = useSelector((state: RootState) => state.auth)
+    const auth = useSelector((state: IAuth) => state.auth)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (

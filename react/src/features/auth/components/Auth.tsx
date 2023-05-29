@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { RegisterRequest, LoginRequest } from '../redux/authSlice';
+import { RegisterRequest, LoginRequest } from '../';
 import { useNavigate } from 'react-router-dom';
-
+import {authState} from '../';
+import AuthInput from '../../../shared';
+interface IAuth {
+    auth: authState;
+    [key: string]: any;
+}
 const Auth = () => {
     const [authData, setAuthData] = React.useState({login: '', password: ''})
     const [state, setState] = React.useState({name: ''})
-    const Auth = useSelector((store: RootState) => store.auth)
+    const Auth = useSelector((store: IAuth) => store.auth)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     React.useEffect(()=>{
@@ -20,14 +24,16 @@ const Auth = () => {
                     <div className="auth-title">
                         { !state.name ? 'Signup' : 'Login'}
                     </div>
-                    <input onChange={(e)=>{
+                    {/* <input onChange={(e)=>{
                         setAuthData({...authData, login: e.target.value});
                     }} placeholder="Enter email I'd" type="text" className="auth-input">
-                    </input>
-                    <input onChange={(e)=>{
-                        setAuthData({...authData, password: e.target.value});
-                    }} placeholder="Enter Password" type="password" className="auth-input">
-                    </input>
+                    </input> */}
+                    <AuthInput placeholder={"Enter email I'd"} onChange={(event: ChangeEvent<HTMLInputElement>)=>{
+                        setAuthData({...authData, login: event.target.value});
+                    }} />
+                    <AuthInput placeholder={"Enter Password"} type='password' onChange={(event: ChangeEvent<HTMLInputElement>)=>{
+                        setAuthData({...authData, password: event.target.value});
+                    }} />
                         {Object.keys(Auth.errors).length ? Object.keys(Auth.errors).map(key=>{
                             return <div className="auth-error">{Auth.errors[key]}</div>
                         }) : ''}

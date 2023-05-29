@@ -1,9 +1,9 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {routes, userRoutes, adminRoutes} from './RouterApp';
-import { RootState } from '../redux/store';
+import { RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { RefreshRequest } from '../redux/authSlice';
+import { RefreshRequest } from '../../features/auth';
 
 
 

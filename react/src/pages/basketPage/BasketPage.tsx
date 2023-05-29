@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Basket from '../components/Basket';
+import Header from '../../widgets/header/Header'
+import Footer from '../../widgets/footer/Footer'
+import Basket from '../../widgets/basket/Basket';
 
 const BasketPage = () => {
     return (

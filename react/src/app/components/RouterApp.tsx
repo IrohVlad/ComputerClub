@@ -1,11 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import MainPage from "../pages/MainPage";
-import AuthPage from "../pages/AuthPage";
-import ProductsPage from "../pages/ProductsPage";
-import AdminPage from "../pages/AdminPage";
-import BasketPage from "../pages/BasketPage";
-import RatesPage from "../pages/RatesPage";
+import MainPage from "../../pages/mainPage/MainPage";
+import AuthPage from "../../pages/authPage/components/AuthPage";
+import ProductsPage from "../../pages/productPage/ProductsPage";
+import AdminPage from "../../pages/adminPage/AdminPage";
+import BasketPage from "../../pages/basketPage/BasketPage";
+import RatesPage from "../../pages/ratesPage/RatesPage";
 
 interface IRoute {
     route: string,

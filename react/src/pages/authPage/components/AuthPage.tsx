@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/Header';
-import Auth from '../components/Auth';
+import Header from '../../../widgets/header/Header';
+import Auth from '../../../features/auth';
 
 const AuthPage: React.FC = () => {
     return (

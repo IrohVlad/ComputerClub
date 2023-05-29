@@ -1,5 +1,5 @@
 import React from 'react';
-import BasketItem from '../components/BasketItem';
+import BasketItem from '../../components/BasketItem';
 import hero from '../assets/hero.png'
 import del from '../assets/delete.svg'
 interface IBasketItems{

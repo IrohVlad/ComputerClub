@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 export default {
-    entry: ['@babel/polyfill', './src/index.tsx'],
+    entry: ['@babel/polyfill', './src/app/components/index.tsx'],
     output: {
         filename: '[name].index.js',
         path: path.resolve(path.resolve(), 'dist')
@@ -42,6 +42,6 @@ export default {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({template: './src/index.html'})
+        new HtmlWebpackPlugin({template: './src/app/components/index.html'})
     ]
 }

@@ -1,21 +1,20 @@
 import React from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Rate from '../components/Rate';
+import Header from '../../widgets/header/Header';
+import Product from '../../components/Product';
+import Footer from '../../widgets/footer/Footer';
 interface IPRoduct{
     id: number;
-    title: string;
-    short_description: string;
-    description: string;
+    name: string;
     price: number;
     img: string;
-    rates: Array<object> | Array<null>;
+    count: number;
+    product_info: Array<object>;
 }
 
-const RatesPage = () => {
+const ProductsPage = () => {
     const [products, setProducts] = React.useState<Array<IPRoduct>>([]);
-    const getRates =React.useCallback(async () => {
-        await fetch('http://127.0.0.1:8000/api/rate/all', {
+    const getProducts =React.useCallback(async () => {
+        await fetch('http://127.0.0.1:8000/api/product/all', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -24,7 +23,7 @@ const RatesPage = () => {
         });
     }, [])
     React.useEffect(()=>{
-        getRates()
+        getProducts()
     }, [])
     return (
         <>
@@ -33,8 +32,8 @@ const RatesPage = () => {
             <section className="products-section">
                 <div className="products _container">
                     {products.length && products.map((value) => {
-                        return <Rate rates={value.rates} key={value.id} func={getRates} id={value.id} description={value.description}
-                        short_description={value.short_description} price={value.price} title={value.title} img={value.img}/>
+                        return <Product key={value.id} info={value.product_info} func={getProducts} 
+                        id={value.id} count={value.count} price={value.price} name={value.name} img={value.img}/>
                     })}
                 </div>
             </section>
@@ -44,4 +43,4 @@ const RatesPage = () => {
     );
 };
 
-export default RatesPage;
+export default ProductsPage;
