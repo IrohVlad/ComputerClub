@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductInfo from './ProductInfo';
+import ProductInfo from '../../features/productInfo/ProductInfo';
 interface IProductProps{
     func: Function;
     id: number;

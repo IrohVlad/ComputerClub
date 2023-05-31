@@ -1,7 +1,7 @@
 import React from 'react';
-import Descriptions from './Descriptions';
+import Descriptions from '../../components/Descriptions';
 import Delete from '../assets/delete.svg'
-import ImageGrid from './ImageGrid';
+import ImageGrid from '../../widgets/imageGrid/ImageGrid';
 
 const AdminProduct = React.memo<any>(({state, setter, img, index, func, title, price, product_info, id}) => {
     const [fetchState, setFetchState] = React.useState({text: ''})

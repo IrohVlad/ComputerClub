@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../../widgets/header/Header'
 import Footer from '../../widgets/footer/Footer';
-import AdminTab from '../../components/AdminTab'
-import AdminForm from '../../components/AdminForm';
-import AdminProduct from '../../components/AdminProduct';
-import AdminRate from '../../components/AdminRate';
-import AdminPc from '../../components/AdminPc';
+import AdminTab from '../../features/adminTab/AdminTab'
+import AdminForm from '../../widgets/adminForm/AdminForm';
+import AdminProduct from '../../entities/adminProduct/AdminProduct';
+import AdminRate from '../../entities/adminRate/AdminRate';
+import AdminPc from '../../entities/adminPc/AdminPc';
 
 export interface IAdminProduct{
     id: number;

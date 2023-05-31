@@ -1,5 +1,5 @@
 import React from 'react';
-import Date from './Date';
+import Date from '../../features/rateDate/Date';
 
 interface IRateProps{
     func: Function;

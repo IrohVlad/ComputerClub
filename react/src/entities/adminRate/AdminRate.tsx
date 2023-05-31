@@ -1,7 +1,7 @@
 import React from 'react';
 import Delete from '../assets/delete.svg'
 import AdminDate from './AdminDate';
-import ImageGrid from './ImageGrid';
+import ImageGrid from '../../widgets/imageGrid/ImageGrid';
 
 
 const AdminRate = ({state, setter, index, func, title, price, img, rates, short_description, description, id}) => {

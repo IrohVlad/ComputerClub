@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageGridItem from './ImageGridItem';
+import ImageGridItem from '../../features/imageGridItem/ImageGridItem';
 
 const ImageGrid = ({id, state}) => {
     const [images, setImages] = React.useState([]);
