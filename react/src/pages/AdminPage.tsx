@@ -12,6 +12,7 @@ export interface IAdminProduct{
     name: string;
     price: number;
     img: string;
+    count: number;
     product_info: Array<object>;
 }
 export interface IAdminRate{
@@ -72,7 +73,7 @@ const AdminPage = () => {
             <main>
                 <AdminTab state={state} setter={setState}/>
                 <AdminForm>
-                    <input type='file' onChange={(e: any)=>{
+                    <input type='file' accept="image/png, image/gif, image/jpeg, image/svg" onChange={(e: any)=>{
                         let file = e.target.files[0];
                         if (file) {
                             let data = new FormData();
@@ -88,11 +89,11 @@ const AdminPage = () => {
                                     // 'Origin': 'http://127.0.0.1:3000'
                                 },
                                 body: data
-                            })
+                            }).then(()=>location.reload())
                           }
                     }} />
                     {state.name == 'Product' && product.length && product.map((value, index)=>{
-                        return <AdminProduct img={value.img} index={index} state={product} setter={setProducts} 
+                        return <AdminProduct count={value.count} img={value.img} index={index} state={product} setter={setProducts} 
                         func={getProducts} key={value.id} id={value.id} title={value.name} price={value.price} product_info={value.product_info}/>
                     }) }
                     {state.name == 'Rate' && rate.length && rate.map((value, index)=>{

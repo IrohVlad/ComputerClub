@@ -114,7 +114,7 @@ const AdminRate = ({state, setter, index, func, title, price, img, rates, short_
                 <img src={`http://127.0.0.1:8000/storage/${img.substr(7)}`} alt="" />
             </div>
             
-            <ImageGrid id={id} state={'rate'}/>
+            <ImageGrid func={func} id={id} state={'rate'}/>
             <AdminDate rates={rates} rate_index={index} state={state} setter={setter} rate_id={id} func={func}/>
             <div onClick={()=>{
                 fetch('http://127.0.0.1:8000/api/rate', {

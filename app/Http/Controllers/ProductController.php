@@ -58,7 +58,42 @@ class ProductController extends Controller
             return response('forbidden', 403);
         }
         $products = ProductType::with('productInfo')->get();
+        foreach($products as $product){
+            $count = Product::where('product_type_id', $product->id)->where('sold', false)->get();
+            $product->count = count($count);
+        }
         return $products;
+    }
+    public function createInstance(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
+        $data = json_decode($request->getContent(), true);
+        for($i = 0; $i < $data["count"]; $i++){
+            Product::create([
+                "product_type_id" => $data["product_type_id"]
+            ]);
+        }
+        return 'ok';
+    }
+    public function deleteInstance(Request $request){
+        $user = Auth::user();
+        if(!$user->tokenCan('admin')){
+            return response('forbidden', 403);
+        }
+        $data = json_decode($request->getContent(), true);
+        $products = Product::where('product_type_id', $data["product_type_id"])->where('sold', false)->get();
+        if(count($products) <= $data["count"]){
+            foreach($products as $product){
+                $product->delete();
+            }
+        } else {
+            for($i = 0; $i < $data["count"]; $i++){
+                $products[$i]->delete();
+            }
+        }
+        return 'ok';
     }
     public function create(Request $request){
         $user = Auth::user();

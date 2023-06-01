@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageGridItem from './ImageGridItem';
 
-const ImageGrid = ({id, state}) => {
+const ImageGrid = ({id, state, func}) => {
     const [images, setImages] = React.useState([]);
     const fetchImages =  React.useCallback(async ()=> {
         await fetch('http://127.0.0.1:8000/api/image', {
@@ -17,7 +17,7 @@ const ImageGrid = ({id, state}) => {
     return (
         <div className='image-grid _container'>
             {images.length && images.map((value, index)=>{
-                return <ImageGridItem key={index} img={value} id={id} state={state} />
+                return <ImageGridItem getFunc={fetchImages} func={func} key={index} img={value} id={id} state={state} />
             })}
         </div>
     );

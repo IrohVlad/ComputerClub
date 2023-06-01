@@ -53,6 +53,8 @@ Route::prefix('product')->group(function(){
     Route::middleware('auth:sanctum')->delete('/', [ProductController::class, 'delete']);
     Route::middleware('auth:sanctum')->delete('/info', [ProductController::class, 'deleteInfo']);
     Route::middleware('auth:sanctum')->post('/buy', [ProductController::class, 'buy']);
+    Route::middleware('auth:sanctum')->delete('/deleteins', [ProductController::class, 'deleteInstance']);
+    Route::middleware('auth:sanctum')->post('/createins', [ProductController::class, 'createInstance']);
 });
 Route::prefix('pc')->group(function(){
     Route::middleware('auth:sanctum')->get('/admin', [PcController::class, 'admin']);

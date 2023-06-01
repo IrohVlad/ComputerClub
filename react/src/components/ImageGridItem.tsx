@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImageGridItem = ({img, id, state}) => {
+const ImageGridItem = ({img, getFunc, id, state, func}) => {
     return (
         <div className="image-grid-item">
                 <div onClick={()=>{
@@ -12,6 +12,7 @@ const ImageGridItem = ({img, id, state}) => {
                             },
                             body: JSON.stringify({img})
                         })
+                        getFunc()
                 }} className="del">-</div>
                 <img onClick={()=>{
                     if(state == 'product'){
@@ -23,6 +24,7 @@ const ImageGridItem = ({img, id, state}) => {
                             },
                             body: JSON.stringify({id, img})
                         })
+                        func()
                     } else if (state == 'rate'){
                         fetch('http://127.0.0.1:8000/api/rate/img', {
                             method: 'POST',
@@ -32,6 +34,7 @@ const ImageGridItem = ({img, id, state}) => {
                             },
                             body: JSON.stringify({id, img})
                         })
+                        func()
                     }
                 }} src={`http://127.0.0.1:8000/storage/${img.substr(7)}`} alt="" />
         </div>
